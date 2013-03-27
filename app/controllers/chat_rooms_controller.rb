@@ -11,7 +11,6 @@ class ChatRoomsController < ApplicationController
   end
 
   def index
-    # latest_messages = Message.limit(15).offset(Message.count-15).order("created_at ASC")
     chat_rooms = ChatRoom.all
     render :json => chat_rooms
   end

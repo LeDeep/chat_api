@@ -38,15 +38,6 @@ describe MessagesController do
   end
 
   context 'GET index' do
-    # before {Message.create({:screen_name => 'michael'})}
-    # before {get :index}
-
-    # it {should respond_with 200}
-    # it {should respond_with_content_type :json}
-    # it 'responds with a json representation of all the messages' do
-    #   response.body.should eq Message.all.to_json
-    # end
-
     context 'with valid parameters' do 
       let(:valid_attributes) {{:chat_room_id => 1}}
       let(:valid_parameters) {{:message => valid_attributes}}
@@ -55,8 +46,7 @@ describe MessagesController do
       it {should respond_with 200}
       it {should respond_with_content_type :json}
       it 'responds with a json representation of the messages for that chat_room_id' do
-        response.body.should eq Message.where("chat_room_id = ?", valid_parameters[:message][:chat_room_id]).to_json
-        # response.body.should eq Message.find(JSON.parse(response.body)['message']['id']).to_json
+        response.body.should eq Message.where(:chat_room_id => valid_parameters[:message][:chat_room_id]).to_json
       end
     end
   end
