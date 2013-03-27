@@ -11,13 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130326220838) do
+ActiveRecord::Schema.define(:version => 20130327193608) do
+
+  create_table "chat_rooms", :force => true do |t|
+    t.string   "started_by"
+    t.string   "topic"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "messages", :force => true do |t|
     t.string   "screen_name"
     t.text     "comment"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "chat_room_id"
   end
 
 end

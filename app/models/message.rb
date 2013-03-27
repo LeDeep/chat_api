@@ -4,4 +4,6 @@ class Message < ActiveRecord::Base
 
   validates :screen_name, :comment, :presence => true
   
+  belongs_to :chat_room
+  
 end

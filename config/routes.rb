@@ -1,5 +1,6 @@
 ChatApi::Application.routes.draw do
   resources :messages
+  resources :chat_rooms
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
