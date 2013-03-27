@@ -11,9 +11,8 @@ class MessagesController < ApplicationController
   end
 
   def index
-    #messages = Messages.recent.where(:comment => params[:comment])
-
-    messages = Message.all
-    render :json => messages
+    latest_messages = Message.limit(15).offset(Message.count-15).order("created_at ASC")
+    render :json => latest_messages
   end
+
 end
