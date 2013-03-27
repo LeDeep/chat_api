@@ -48,4 +48,16 @@ describe ChatRoomsController do
     end
   end
 
+  context 'GET show' do
+    chat_room = ChatRoom.create({:started_by => 'michael', :topic => 'stuff'})
+    before {get :show, :id => chat_room.id}
+
+    
+    it {should respond_with 200}
+    it {should respond_with_content_type :json}
+    it 'responds with a json representation of the chat_room' do
+      response.body.should eq chat_room.to_json
+    end
+  end
+
 end

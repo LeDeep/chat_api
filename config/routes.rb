@@ -1,6 +1,19 @@
 ChatApi::Application.routes.draw do
   resources :messages
   resources :chat_rooms
+
+  # match 'messages' => 'messages#create', :via => :post
+  # match 'messages/:id' => 'messages#show', :via => :get
+  # match 'messages/:id' => 'messages#update', :via => :put
+  # match 'messages/:id' => 'messages#destroy', :via => :delete
+  # match 'messages' => 'messages#index', :via => :get
+
+  # match 'chat_rooms' => 'chat_rooms#create', :via => :post
+  # match 'chat_rooms/:id' => 'chat_rooms#show', :via => :get
+  # match 'chat_rooms/:id' => 'chat_rooms#update', :via => :put
+  # match 'chat_rooms/:id' => 'chat_rooms#destroy', :via => :delete
+  # match 'chat_rooms' => 'chat_rooms#index', :via => :get
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

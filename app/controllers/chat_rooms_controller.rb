@@ -16,4 +16,9 @@ class ChatRoomsController < ApplicationController
     render :json => chat_rooms
   end
 
+  def show
+    chat_room = ChatRoom.find(params[:id])
+    render :json => chat_room
+  end
+
 end
