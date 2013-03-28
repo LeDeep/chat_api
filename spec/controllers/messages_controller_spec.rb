@@ -3,6 +3,10 @@ require 'spec_helper'
 describe MessagesController do
   context 'routing' do
     it {should route(:post, '/messages').to :action => :create}
+    it {should route(:get, '/messages/1').to :action => :show, :id => 1}
+    it {should route(:put, '/messages/1').to :action => :update, :id => 1}
+    it {should route(:delete, '/messages/1').to :action => :destroy, :id => 1}
+    it {should route(:get, '/messages').to :action => :index}
   end
 
    context 'POST create' do

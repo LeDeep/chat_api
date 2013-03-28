@@ -3,6 +3,10 @@ require 'spec_helper'
 describe ChatRoomsController do
   context 'routing' do
     it {should route(:post, '/chat_rooms').to :action => :create}
+    it {should route(:get, '/chat_rooms/1').to :action => :show, :id => 1}
+    it {should route(:put, '/chat_rooms/1').to :action => :update, :id => 1}
+    it {should route(:delete, '/chat_rooms/1').to :action => :destroy, :id => 1}
+    it {should route(:get, '/chat_rooms').to :action => :index}
   end
 
    context 'POST create' do
@@ -49,15 +53,29 @@ describe ChatRoomsController do
   end
 
   context 'GET show' do
-    chat_room = ChatRoom.create({:started_by => 'michael', :topic => 'stuff'})
-    before {get :show, :id => chat_room.id}
+    context 'with existing id' do
+      chat_room = ChatRoom.create({:started_by => 'michael', :topic => 'stuff'})
+      before {get :show, :id => chat_room.id}
 
-    
-    it {should respond_with 200}
-    it {should respond_with_content_type :json}
-    it 'responds with a json representation of the chat_room' do
-      response.body.should eq chat_room.to_json
+      
+      it {should respond_with 200}
+      it {should respond_with_content_type :json}
+      it 'responds with a json representation of the chat_room' do
+        response.body.should eq chat_room.to_json
+      end
     end
+
+    # context 'with nonexistent id' do
+    #   chat_room = ChatRoom.create({:started_by => 'michael', :topic => 'stuff'})
+    #   before {get :show, :id => (chat_room.id + 1)}
+
+      
+    #   it {should respond_with 404}
+    #   it {should respond_with_content_type :json}
+    #   it 'responds with a json representation of record not found' do
+    #     response.body.should_not eq chat_room.to_json
+    #   end
+    # end
   end
 
 end
