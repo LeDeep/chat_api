@@ -2,14 +2,15 @@ require 'spec_helper'
 
 describe MessagesController do
   context 'routing' do
-    it {should route(:post, '/messages').to :action => :create}
-    it {should route(:get, '/messages/1').to :action => :show, :id => 1}
-    it {should route(:put, '/messages/1').to :action => :update, :id => 1}
-    it {should route(:delete, '/messages/1').to :action => :destroy, :id => 1}
-    it {should route(:get, '/messages').to :action => :index}
+    it {should route(:post, '/chat_rooms/1/messages').to :action => :create, :chat_room_id => 1}
+    it {should route(:get, '/chat_rooms/1/messages/1').to :action => :show, :id => 1, :chat_room_id => 1}
+    it {should route(:put, '/chat_rooms/1/messages/1').to :action => :update, :id => 1, :chat_room_id => 1}
+    it {should route(:delete, '/chat_rooms/1/messages/1').to :action => :destroy, :id => 1, :chat_room_id => 1}
+    it {should route(:get, '/chat_rooms/1/messages').to :action => :index, :chat_room_id => 1}
   end
 
-   context 'POST create' do
+  context 'POST create' do
+    let(:chat_room) {ChatRoom.create(:started_by => screen_name, :topic => topic)}
     context 'with valid parameters' do
       let(:valid_attributes) {{:screen_name => 'michael', :comment => "having so much fun", :chat_room_id => 1}}
       let(:valid_parameters) {{:message => valid_attributes}}

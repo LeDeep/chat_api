@@ -1,6 +1,8 @@
 ChatApi::Application.routes.draw do
-  resources :messages
-  resources :chat_rooms
+  resources :chat_rooms do 
+    resources :messages
+  end
+  
 
   # match 'messages' => 'messages#create', :via => :post
   # match 'messages/:id' => 'messages#show', :via => :get
